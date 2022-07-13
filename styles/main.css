@@ -18,3 +18,163 @@
   --text: #333;
   --grey: #aaa;
 }
+
+/* Body */
+body {
+  min-height: 100vh;
+
+  background-image: linear-gradient(to top, var(--purple), var(--blue));
+
+  font-family: "Roboto", sans-serif;
+
+  display: grid;
+  place-items: center;
+}
+
+/* Form */
+.form {
+  width: min(550px, 98%);
+  margin: 0 auto;
+  padding: 50px 30px;
+
+  background-color: var(--white);
+
+  border-radius: 7px;
+
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.4);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Form Control */
+.form__control {
+  width: 100%;
+  margin: 10px 0;
+
+  background-color: var(--white);
+  color: var(--text);
+
+  position: relative;
+
+  --layout: var(--grey);
+  --label: var(--blue);
+}
+
+/* Form Control: Outlined */
+.form__control--outlined {
+  --label: var(--yellow);
+}
+
+/* Form Control: Underlined */
+.form__control--underlined {
+  --label: var(--purple);
+}
+
+/* Form Control: Filled */
+.form__control--filled {
+  --label: var(--green);
+  background-color: var(--text);
+  color: var(--white);
+}
+
+/* Control Input */
+.control__input {
+  appearance: none;
+  outline: none;
+  border: 1px solid transparent;
+
+  background-color: inherit;
+  color: inherit;
+
+  width: 100%;
+
+  font-size: 1rem;
+  padding: 8px;
+  padding-top: 18px;
+
+  transition: all 250ms linear;
+}
+
+.form__control--outlined > .control__input {
+  border-color: var(--layout);
+}
+
+.form__control--underlined > .control__input,
+.form__control--filled > .control__input {
+  border-color: transparent !important;
+}
+
+.control__input:focus {
+  border-color: var(--label);
+}
+
+.control__input::placeholder {
+  font-size: 0;
+}
+
+/* Control Label */
+.control__input ~ label {
+  font-size: 1rem;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+.control__input ~ label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background-image: linear-gradient(
+    to right,
+    var(--layout) 0%,
+    var(--layout) 50%,
+    var(--label) 51%,
+    var(--label) 100%
+  );
+  background-size: 210% 100%;
+
+  transition: background 500ms linear;
+}
+
+.control__input ~ label > span {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+
+  color: var(--layout);
+
+  transition: all 250ms linear;
+}
+
+.control__input:required ~ label > span::after {
+  content: "*";
+  color: var(--red) !important;
+}
+
+.control__input:focus ~ label::after,
+.control__input:not(:placeholder-shown) ~ label::after {
+  background-position: top right;
+}
+
+.control__input:focus ~ label > span {
+  color: var(--label);
+}
+
+.control__input:focus ~ label > span,
+.control__input:not(:placeholder-shown) ~ label > span {
+  font-size: 0.8em;
+  transform: translateY(-20px);
+}
