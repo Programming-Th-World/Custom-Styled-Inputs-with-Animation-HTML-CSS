@@ -1,0 +1,20 @@
+/* Global Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Global Variables */
+:root {
+  --blue: #5fa9d3;
+  --green: #5fd3ac;
+  --yellow: #d3865f;
+  --purple: #855ed4;
+  --red: #d45e5e;
+
+  --white: #fff;
+  --text: #333;
+  --grey: #aaa;
+}
